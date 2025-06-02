@@ -1,132 +1,99 @@
-﻿namespace TablePrinter;
+﻿using static TablePrinter.ConsoleTable;
+
+namespace TablePrinter;
+
+class Person
+{
+    public int Id { get; set; }
+
+    //[ConsoleTable(DisplayName = "Name",CellTextAlignment = TextAlignment.Right)]
+    public string? Name { get; set; }
+
+    [ConsoleTable(CellFgColour = ConsoleColor.Magenta,CellTextAlignment = TextAlignment.Center)]
+    public string? Email { get; set; }
+
+    [ConsoleTable(Format = "MMM dd, yyyy",
+    DisplayName = "Date Of Birth")]
+    public DateOnly? DoB { get; set; }
+
+    [ConsoleTable(DisplayName ="Annual Salary",Format ="C", CellFgColour = ConsoleColor.DarkCyan)]
+    public double Salary { get; set; }
+}
+
 
 class Program
 {
-    public enum LineStyles
-    {
-        SingleLine,
-        SingleBoldLine,
-        DoubleLine,
-        DoubleToSingleLine,
-        SingleToDoubleLine,
-        SingleDashedLine,
-        SingleDashedBoldLine,
-        SingleCurvedLine
-    }
-    public enum Pos
-    {
-        TopLeft = 0,
-        TopRight = 1,
-        BottomLeft = 2,
-        BottomRight = 3,
-        Horizontal = 4,
-        Vertical = 5,
-        TopT = 6,
-        BottomT = 7,
-        RightT = 8,
-        LeftT = 9,
-        Cross = 10,
-
-    }
-    public static readonly Dictionary<LineStyles, char[]> lines = new()
-    {
-        { LineStyles.SingleLine ,           ['┌', '┐', '└', '┘', '─', '│', '┬', '┴', '┤', '├', '┼',]},
-        { LineStyles.SingleBoldLine ,       ['┏', '┓', '┗', '┛', '━', '┃', '┳', '┻', '┫', '┣', '╋',]},
-        { LineStyles.DoubleLine ,           ['╔', '╗', '╚', '╝', '═', '║', '╦', '╩', '╣', '╠', '╬',]},
-        { LineStyles.DoubleToSingleLine ,   ['╓', '╖', '╙', '╜', '─', '║', '╥', '╨', '╢', '╟', '╫',]},
-        { LineStyles.SingleToDoubleLine ,   ['╒', '╕', '╘', '╛', '═', '│', '╤', '╧', '╡', '╞', '╪',]},
-        { LineStyles.SingleDashedLine ,     ['┌', '┐', '└', '┘', '╌', '╎', '┬', '┴', '┤', '├', '┼',]},
-        { LineStyles.SingleDashedBoldLine , ['┏', '┓', '┗', '┛', '╍', '╏', '┳', '┻', '┫', '┣', '╋',]},
-        { LineStyles.SingleCurvedLine ,     ['╭', '╮', '╰', '╯', '─', '│', '┬', '┴', '┤', '├', '┼',] }
-    };
     static void Main(string[] args)
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        var rand = new Random((int)DateTime.Now.Ticks);
+        List<Person> people =
+        [
+            new (){ Id = 1, Name = "Alice", Email = "alice@example.com", DoB=new(1993,9,12),  Salary =27386.21},
+            new (){ Id = 2, Name = "Bob", Email = "bob@example.com" ,  Salary = 9076.556},
+            new (){ Id = 2, Name = "Bob sdflksdjflk sjdf lkjs", Email = "bob@example.com" ,  Salary = 32667.803 },
+            new (){ Id = 1, Name = "Alice", Email = "alice@example.com", DoB=new(1993,9,12),  Salary = 13209.741  },
+            new (){ Id = 2, Name = "Bob", Email = "bob@example.com",  Salary = 31483.062  },
+            new (){ Id = 2, Name = "Bob sdflksdjflk sjdf lkjs", Email = "bob@example.com",  Salary = 44228.16  },
+            new (){ Id = 1, Name = "Alice", Email = "alice@example.com", DoB=new(1993,9,12) ,  Salary =5862.314},
+       
+        ];
+        // Console.BackgroundColor = ConsoleColor.White;
+        //Console.ForegroundColor = ConsoleColor.Red;
+        //Console.ResetColor();
+        //Console.Clear();
+       // people.PrintAsTable(o=> { o.TableXPadding = 3;o.UseRowSeperator = true; });
+       // people.PrintAsTable(o => o.TableXPadding = 3);
 
-
-        //var style = LineStyles.SingleLine;
-
-        foreach (LineStyles style in Enum.GetValues(typeof(LineStyles)))
+        people.PrintAsTable(new TableStyle()
         {
-            Console.WriteLine("\n\n\n---------------");
-            Console.WriteLine(style.ToString());
-            Console.WriteLine("---------------\n");
-
-            List<string> columns = ["col 1", "another colmn", "third co", "total"];
-
-            var xPadding = 2;
-
-            var colCount = columns.Count;
-            var rowCount = 4;
-            //var width = columns.Sum(x => x.Length + (2 * xPadding)) + columns.Count - 1;
-
-
-            PrintBorder(style, Pos.TopLeft);
-            for (var i = 0; i < colCount; i++)
+            BorderStyle = BorderStyles.SingleToDoubleLine,
+            BorderColor = ConsoleColor.Cyan,
+            BackgroundColor = ConsoleColor.Yellow,
+            CellPadding = 1,
+            UseRowSeperator = false,
+            RowSeperatorStyle = BorderStyles.SingleLine,
+            HeaderCellStyle = new()
             {
-                var col = columns[i];
-                for (var j = 0; j < col.Length + (2 * xPadding); j++)
-                {
-                    PrintBorder(style, Pos.Horizontal);
-                }
-                if (i < colCount - 1) PrintBorder(style, Pos.TopT);
-
-            }
-            PrintBorder(style, Pos.TopRight);
-            Console.WriteLine();
-            foreach (var col in columns)
+                BackgroundColor = ConsoleColor.DarkMagenta,
+                ForegroundColor = ConsoleColor.DarkBlue,
+                TextAlignment = TextAlignment.Right,
+            },
+            DataCellStyle = new()
             {
-                PrintBorder(style, Pos.Vertical);
-                Console.Write("".PadLeft(xPadding, ' '));
-                Console.Write(col);
-                Console.Write("".PadRight(xPadding, ' '));
-            }
-            PrintBorder(style, Pos.Vertical);
-            Console.WriteLine();
+                TextAlignment = TextAlignment.Right,
+                BackgroundColor = ConsoleColor.Red,
+            },
+            TableXPadding = 14,
+            TableYPadding = 2,
+          //  UseAnimation = true,
+          //  AnimationDelay = 10
 
-            PrintBorder(style, Pos.LeftT);
-            for (var i = 0; i < colCount; i++)
-            {
-                var col = columns[i];
-                for (var j = 0; j < col.Length + (2 * xPadding); j++)
-                {
-                    PrintBorder(style, Pos.Horizontal);
-                }
-                if (i < colCount - 1) PrintBorder(style, Pos.Cross);
-            }
-            PrintBorder(style, Pos.RightT);
-            Console.WriteLine();
+        });
 
-            for (var i = 0; i < rowCount; i++)
-            {
+        //people.PrintAsTable(style =>
+        //{
+        //    style.BorderStyle = BorderStyles.DoubleLine;
+        //    style.BorderColor = ConsoleColor.Cyan;
+        //    style.CellPadding = 2;
+        //    style.UseRowSeperator = true;
+        //    style.RowSeperatorStyle = BorderStyles.DoubleToSingleLine;
+        //    style.HeaderCellStyle = new()
+        //    {
 
+        //        BackgroundColor = ConsoleColor.Cyan,
+        //        ForegroundColor = ConsoleColor.Black,
+        //        TextAlignment = TextAlignment.Center,
+        //    };
+        //    style.DataCellStyle = new()
+        //    {
+                
+        //    };
+        //    style.TableXPadding = 14;
+        //    style.TableYPadding = 2;      
+            
+        //});
 
-                for (var j = 0; j < colCount; j++)
-                {
-                    PrintBorder(style, Pos.Vertical);
-                    Console.Write("".PadLeft(xPadding, ' '));
-                    Console.Write("".PadLeft(columns[j].Length, ' '));
-                    Console.Write("".PadRight(xPadding, ' '));
-                }
-                PrintBorder(style, Pos.Vertical);
-                Console.WriteLine();
-            }
-            PrintBorder(style, Pos.BottomLeft);
-            for (var i = 0; i < colCount; i++)
-            {
-                var col = columns[i];
-                for (var j = 0; j < col.Length + (2 * xPadding); j++)
-                {
-                    PrintBorder(style, Pos.Horizontal);
-                }
-                if (i < colCount - 1) PrintBorder(style, Pos.BottomT);
-
-            }
-            PrintBorder(style, Pos.BottomRight);
-
-        }
+       // _ = Console.ReadKey();
     }
-
-    public static void PrintBorder(LineStyles style, Pos pos) => Console.Write(lines[style][(int)pos]);
-
 }
+
