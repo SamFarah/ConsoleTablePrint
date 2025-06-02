@@ -1,4 +1,4 @@
-﻿namespace TablePrinter.Models.Enums;
+﻿namespace ConsoleTablesPrinter;
 
 /// <summary>
 /// Defines the available border styles for table rendering.

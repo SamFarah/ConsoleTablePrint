@@ -1,4 +1,4 @@
-﻿namespace TablePrinter.Models.Enums;
+﻿namespace ConsoleTablesPrinter;
 
 /// <summary>
 /// Specifies the horizontal alignment of text within a table cell.

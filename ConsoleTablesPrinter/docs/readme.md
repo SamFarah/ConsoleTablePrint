@@ -1,5 +1,5 @@
 
-# TablePrinter
+# ConsoleTablesPrinter
 
 A simple, flexible, and customizable console table printer for .NET applications.  
 Easily print objects and collections as styled tables with minimal setup.
@@ -21,15 +21,16 @@ Easily print objects and collections as styled tables with minimal setup.
 
 Install via NuGet:
 
-
-dotnet add package TablePrinter --version 1.0.0
+```bash
+dotnet add package ConsoleTablePrinter --version 1.0.0
+```
 
 
 Or using the NuGet Package Manager:
 
-
-Install-Package TablePrinter -Version 1.0.0
-
+```
+Install-Package ConsoleTablePrinter -Version 1.0.0
+```
 
 ---
 
@@ -37,10 +38,12 @@ Install-Package TablePrinter -Version 1.0.0
 
 ### Print a single object
 
-
+```csharp
 var person = new Person { Name = "Alice", Age = 30, City = "Seattle" };
 person.PrintAsTable();
+```
 
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/screenshot1.PNG?raw=true)
 
 ### Print a list of objects
 

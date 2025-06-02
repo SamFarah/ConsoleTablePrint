@@ -1,9 +1,15 @@
-﻿global using TablePrinter.Attributes;
-global using TablePrinter.Models;
-global using TablePrinter.Models.Enums;
+﻿namespace ConsoleTablesPrinter;
 
-namespace TablePrinter;
-
+/// <summary>
+/// Provides functionality to print structured tabular data to the console using customizable styles and attributes.
+/// </summary>
+/// <remarks>
+/// This is the main entry point for rendering console tables. 
+/// It supports a variety of table styles, formatting options, and custom column metadata via attributes.
+/// Use <c>PrintAsTable()</c> to render objects as tables with optional styling.
+///
+/// If <see cref="DefaultStyle"/> is set and no style is passed to <c>PrintAsTable</c>, the default will be applied automatically.
+/// </remarks>
 public static partial class ConsoleTablePrinter
 {
     /// <summary>

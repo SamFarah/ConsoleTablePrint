@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace TablePrinter;
+namespace ConsoleTablesPrinter;
 public static partial class ConsoleTablePrinter
 {
     private static List<PropertyInfo> GetVisibleProperties<T>() =>

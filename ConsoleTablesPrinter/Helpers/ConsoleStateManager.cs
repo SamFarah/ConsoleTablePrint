@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TablePrinter.Helpers;
+namespace ConsoleTablesPrinter.Helpers;
 internal static class ConsoleStateManager
 {
     internal static void WithConsoleState(Action action, bool requiresUtf8)

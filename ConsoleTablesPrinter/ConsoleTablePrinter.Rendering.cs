@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using TablePrinter.Helpers;
+﻿using ConsoleTablesPrinter.Helpers;
+using System.Reflection;
 
-namespace TablePrinter;
+namespace ConsoleTablesPrinter;
 public static partial class ConsoleTablePrinter
 {
     private static void PrintListAsTable<T>(this List<T> items, TableStyle? tableStyle = null)

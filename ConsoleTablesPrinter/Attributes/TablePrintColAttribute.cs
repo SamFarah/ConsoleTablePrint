@@ -1,4 +1,4 @@
-﻿namespace TablePrinter.Attributes;
+﻿namespace ConsoleTablesPrinter;
 
 /// <summary>
 /// Specifies how a property should be displayed in the console table.

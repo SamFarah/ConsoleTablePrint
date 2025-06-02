@@ -1,4 +1,4 @@
-﻿namespace TablePrinter;
+﻿namespace ConsoleTablesPrinter;
 public static partial class ConsoleTablePrinter
 {
     private class TableHeader
@@ -12,7 +12,6 @@ public static partial class ConsoleTablePrinter
     {
         public string? Value { get; set; }
         public CellStyle CellStyle { get; set; } = new();
-        // You can add more metadata here if you want
     }
 
     private enum HorLineDefs
@@ -41,7 +40,7 @@ public static partial class ConsoleTablePrinter
 
     private static readonly Dictionary<BorderStyles, char[]> _lines = new()
     {
-        { BorderStyles.SingleLine ,           new char[]{'┌', '┐', '└', '┘', '─', '│', '┬', '┴', '┤', '├', '┼', } },
+        { BorderStyles.SingleLine ,            new char[]{'┌', '┐', '└', '┘', '─', '│', '┬', '┴', '┤', '├', '┼',}},
         { BorderStyles.SingleBoldLine ,        new char[]{'┏', '┓', '┗', '┛', '━', '┃', '┳', '┻', '┫', '┣', '╋',}},
         { BorderStyles.DoubleLine ,            new char[]{'╔', '╗', '╚', '╝', '═', '║', '╦', '╩', '╣', '╠', '╬',}},
         { BorderStyles.DoubleToSingleLine ,    new char[]{'╓', '╖', '╙', '╜', '─', '║', '╥', '╨', '╢', '╟', '╫',}},
@@ -50,7 +49,7 @@ public static partial class ConsoleTablePrinter
         { BorderStyles.SingleDashedBoldLine ,  new char[]{'┏', '┓', '┗', '┛', '╍', '╏', '┳', '┻', '┫', '┣', '╋',}},
         { BorderStyles.SingleCurvedLine ,      new char[]{'╭', '╮', '╰', '╯', '─', '│', '┬', '┴', '┤', '├', '┼',}},
         { BorderStyles.GoodOldAscii ,          new char[]{'-', '-', '-', '-', '-', '│', '-', '-', '-', '-', '-',}},
-        { BorderStyles.ImprovedAscii ,         new char[]{'+', '+', '+', '+', '-', '│', '+', '+', '+', '+', '+', } },
+        { BorderStyles.ImprovedAscii ,         new char[]{'+', '+', '+', '+', '-', '│', '+', '+', '+', '+', '+',}},
     };
 
     private static readonly Dictionary<HorLineDefs, PiecePos[]> _lineDefinitions = new()
@@ -61,7 +60,7 @@ public static partial class ConsoleTablePrinter
             { HorLineDefs.BottomLine,new PiecePos[]{PiecePos.BottomLeft, PiecePos.Horizontal, PiecePos.BottomT, PiecePos.BottomRight }}
     };
 
-    private static readonly List<BorderStyles> _specialEncodingStyles =new List<BorderStyles>
+    private static readonly List<BorderStyles> _specialEncodingStyles = new List<BorderStyles>
     {
         BorderStyles.SingleBoldLine,
         BorderStyles.SingleDashedBoldLine,

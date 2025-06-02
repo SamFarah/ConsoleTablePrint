@@ -1,5 +1,13 @@
-﻿namespace TablePrinter.Models;
+﻿namespace ConsoleTablesPrinter;
 
+/// <summary>
+/// Represents the visual style configuration for table output in the console.
+/// </summary>
+/// <remarks>
+/// This class allows you to customize table borders, padding, characters, and alignment. 
+/// It is used when rendering tables via <c>PrintAsTable</c> methods. If no style is passed,
+/// it will default to basic settings
+/// </remarks>
 public class TableStyle
 {
     /// <summary>

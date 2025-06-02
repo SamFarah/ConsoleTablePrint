@@ -1,4 +1,4 @@
-﻿namespace TablePrinter.Models;
+﻿namespace ConsoleTablesPrinter;
 
 /// <summary>
 /// Defines styling options for a table cell, including foreground and background colors,
