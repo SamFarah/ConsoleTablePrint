@@ -12,10 +12,9 @@
 		<RepositoryUrl>https://github.com/SamFarah/ConsoleTablesPrinter</RepositoryUrl>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<IncludeSymbols>true</IncludeSymbols>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageReadmeFile>docs/readme.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/SamFarah/ConsoleTablesPrinter</PackageProjectUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>Readme.md</PackageReadmeFile>		
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
 	</PropertyGroup>
 
 	<ItemGroup>
