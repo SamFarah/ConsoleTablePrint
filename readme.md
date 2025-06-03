@@ -304,7 +304,7 @@ If no style is specified in `PrintAsTable()`, this default will be used.
 | Version       | Last updated  |
 | ------------- |---------------|
 | 1.0.0 	    |2025-06-02     |
-
+| 1.0.1 	    |2025-06-03     |
 
 ---
 ## License
