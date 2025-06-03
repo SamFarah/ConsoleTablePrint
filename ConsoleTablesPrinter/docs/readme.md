@@ -72,7 +72,7 @@ var person = new Person() { Id=1, Name = "Alice Johnson", Email="Alice@eample.co
 person.PrintAsTable();
 ```
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot2.png)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot2.1.png)
 
 Notice that when it is a single object it will pivot the table and display a 2 column name/value table
 
