@@ -63,7 +63,7 @@ class Program
 }
 ```
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot1.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot1.png)
 
 ### Print a single object
 
@@ -72,7 +72,7 @@ var person = new Person() { Id=1, Name = "Alice Johnson", Email="Alice@eample.co
 person.PrintAsTable();
 ```
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot2.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot2.png)
 
 Notice that when it is a single object it will pivot the table and display a 2 column name/value table
 
@@ -171,7 +171,7 @@ people.PrintAsTable(style =>
     };
 });
 ```
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot3.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot3.png)
 
 Or
 
@@ -187,7 +187,7 @@ people.PrintAsTable(new TableStyle()
            
 });
 ```
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot4.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot4.png)
 
 ---
 
@@ -235,7 +235,7 @@ people.PrintAsTable(new TableStyle()
         });
 ```
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot5.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot5.png)
 
 When printing a single object of `Person`, it maintains the styling but uses it in the pivotted table:
 
@@ -259,7 +259,7 @@ people.PrintAsTable();
 person.PrintAsTable();
 ```
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot6.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot6.png)
 
 ### Supported attributes:
 
@@ -294,7 +294,7 @@ ConsoleTablePrinter.DefaultStyle = new TableStyle()
 
 If no style is specified in `PrintAsTable()`, this default will be used.
 
-![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot7.PNG?raw=true)
+![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot7.png)
 
 ---
 
