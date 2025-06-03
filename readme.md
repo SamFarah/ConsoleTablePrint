@@ -21,14 +21,14 @@ Easily print objects and collections as styled console tables with minimal setup
 Install via NuGet:
 
 ```bash
-dotnet add package ConsoleTablePrinter --version 1.0.2
+dotnet add package ConsoleTablePrinter --version 1.0.3
 ```
 
 
 Or using the NuGet Package Manager:
 
 ```
-Install-Package ConsoleTablePrinter -Version 1.0.2
+Install-Package ConsoleTablePrinter -Version 1.0.3
 ```
 
 ---
@@ -308,6 +308,7 @@ If no style is specified in `PrintAsTable()`, this default will be used.
 | 1.0.0 | 2025-06-02 |
 | 1.0.1 | 2025-06-03 |
 | 1.0.2 | 2025-06-03 |
+| 1.0.3 | 2025-06-03 |
 
 ---
 ## License
