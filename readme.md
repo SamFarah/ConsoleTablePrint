@@ -1,4 +1,4 @@
-﻿
+﻿[![NuGet](https://img.shields.io/nuget/v/ConsoleTablesPrinter.svg?style=flat-square)](https://www.nuget.org/packages/ConsoleTablesPrinter/)
 # ConsoleTablesPrinter
 A simple, flexible, and customizable table printer for .NET console applications.  
 Easily print objects and collections as styled console tables with minimal setup.
