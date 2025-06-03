@@ -6,14 +6,14 @@
 		<Nullable>enable</Nullable>
 		<Version>1.0.0</Version>		
 		<Authors>Sam Farah</Authors>
-		<PackageId>ConsoleTablePrinter</PackageId>
+		<PackageId>ConsoleTablesPrinter</PackageId>
 		<Description>Lightweight, easy to use, highly customizable console table printer with styling and attribute support</Description>
 		<PackageTags>console, table, formatting, attributes, styling, lightweight</PackageTags>
-		<RepositoryUrl>https://github.com/SamFarah/ConsoleTablePrint</RepositoryUrl>
+		<RepositoryUrl>https://github.com/SamFarah/ConsoleTablesPrinter</RepositoryUrl>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<IncludeSymbols>true</IncludeSymbols>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageProjectUrl>https://github.com/SamFarah/ConsoleTablePrint</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/SamFarah/ConsoleTablesPrinter</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>Readme.md</PackageReadmeFile>		
 	</PropertyGroup>
