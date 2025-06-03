@@ -1,4 +1,4 @@
-
+﻿
 # ConsoleTablesPrinter
 
 A simple, flexible, and customizable console table printer for .NET applications.  
@@ -36,104 +36,280 @@ Install-Package ConsoleTablePrinter -Version 1.0.0
 
 ## Usage
 
-### Print a single object
-
-```csharp
-var person = new Person { Name = "Alice", Age = 30, City = "Seattle" };
-person.PrintAsTable();
-```
-
-![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/screenshot1.PNG?raw=true)
 
 ### Print a list of objects
 
-
-var people = new List<Person>
+```csharp
+using ConsoleTablesPrinter;
+class Person
 {
-    new() { Name = "Alice", Age = 30, City = "Seattle" },
-    new() { Name = "Bob", Age = 25, City = "Portland" },
-    new() { Name = "Charlie", Age = 35, City = "San Francisco" }
-};
-people.PrintAsTable();
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public DateOnly? DoB { get; set; }    
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        var people = new List<Person>
+        {
+            new() { Id=1, Name = "Alice Johnson", Email="Alice@eample.com", DoB = new DateOnly(1962,4,13), City = "Seattle" },
+            new() { Id=2, Name = "Bob Smith", Email="bob@eample.com", DoB =  new DateOnly(1991,7,27), City = "Portland" },
+            new() { Id=3, Name = "Charlie Potato", Email="charlie.potato @eample.com", DoB=  new DateOnly(1962,4,13), City = "San Francisco" }
+        };
+        people.PrintAsTable();
+    }
+}
+```
 
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot1.PNG?raw=true)
 
-### Customize table style
+### Print a single object
 
+```csharp
+var person = new Person() { Id=1, Name = "Alice Johnson", Email="Alice@eample.com", DoB = new DateOnly(1962,4,13), City = "Seattle" };
+person.PrintAsTable();
+```
 
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot2.PNG?raw=true)
+
+Notice that when it is a single object it will pivot the table and display a 2 column name/value table
+
+## Customize Table Style
+
+You can customize the look and feel of your tables using the `TableStyle` class. Below are the available styling properties:
+
+### Borders
+
+| Property | Description |
+|----------|-------------|
+| `BorderStyle` | Sets the style of the outer table border. Defaults to `SingleLine` if `null` or unset. the available options are described below. |
+| `BorderColor` | The color used for the border lines, it uses the default `System.ConsoleColor`. Defaults to the console’s foreground color if `null` or unset. |
+
+---
+
+### Colors and Cell Styles
+
+| Property | Description |
+|----------|-------------|
+| `BackgroundColor` | Background color applied to the entire table. |
+| `HeaderCellStyle` | Style settings for header cells (colors, alignment). Can be overridden per column using `[TablePrintCol]`. |
+| `DataCellStyle` | Style settings for data cells. Can be overridden per column using `[TablePrintCol]`. |
+
+Both `HeaderCellStyle` and `DataCellStyle` are of type `CellStyle`
+
+| Property | Description |
+|----------|-------------|
+| `BackgroundColor` | Background color applied to the cell. |
+| `ForegroundColor` | Text (Foreground) color applied to the cell. |
+| `TextAlignment` | Text alignment [Left, Center, Right]. Defaults to left if `null` or unset |
+
+---
+
+### Padding & Spacing
+
+| Property | Description |
+|----------|-------------|
+| `CellHorizontalPadding` | Number of spaces inside each cell (horizontal). |
+| `HorizontalPadding` | Spaces between the table and the left edge of the console. |
+| `VerticalPadding` | Blank lines above and below the table. |
+
+---
+
+### Row Layout
+
+| Property | Description |
+|----------|-------------|
+| `UseRowSeperator` | If set to `true` it will add a line between each row for better readability. |
+| `RowSeperatorStyle` | (Optional) Use a different border style for row separators. Style of the row separators. Falls back to `BorderStyle` if not set. Only applies if `UseRowSeperator` is `true`. |
+
+---
+
+### "Animation"
+
+| Property | Description |
+|----------|-------------|
+| `UseAnimation` | Enables a row-by-row reveal effect. |
+| `AnimationDelay` | Delay (in ms) between rows during animation. Clamped between `0` and `200`. |
+
+---
+
+## Supported Border Styles
+
+| Property | Uses the Characters |
+|----------|-------------|
+| `SingleLine` | ┌ ┐ └ ┘ ─ │ ┬ ┴ ┤ ├ ┼  |
+| `SingleBoldLine` | ┏ ┓ ┗ ┛ ━ ┃ ┳ ┻ ┫ ┣ ╋   |
+| `DoubleLine` | ╔ ╗ ╚ ╝ ═ ║ ╦ ╩ ╣ ╠ ╬ |
+| `DoubleToSingleLine` | ╓ ╖ ╙ ╜ ─ ║ ╥ ╨ ╢ ╟ ╫   |
+| `SingleToDoubleLine` | ╒ ╕ ╘ ╛ ═ │ ╤ ╧ ╡ ╞ ╪ |
+| `SingleDashedLine`| ┌ ┐ └ ┘ ╌ ╎ ┬ ┴ ┤ ├ ┼   |
+| `SingleDashedBoldLine` | ┏ ┓ ┗ ┛ ╍ ╏ ┳ ┻ ┫ ┣ ╋   |
+| `SingleCurvedLine` | ╭ ╮ ╰ ╯ ─ │ ┬ ┴ ┤ ├ ┼   |
+| `GoodOldAscii` | - │ |
+| `ImprovedAscii` | + - │ |
+
+---
+
+### 💡 Example Usage
+
+You can apply these styles either by configuring a new TableStyle inline using a lambda expression or by passing a pre configured TableStyle object to PrintAsTable 
+
+```csharp
 people.PrintAsTable(style =>
 {
-    style.BorderStyle = BorderStyles.DoubleLine;
-    style.CellPadding = 2;
-    style.UseAnimation = true;
-    style.AnimationDelay = 50;
+    style.BorderStyle = BorderStyles.SingleBoldLine;
+    style.CellHorizontalPadding = 2;
     style.BackgroundColor = ConsoleColor.DarkBlue;
     style.BorderColor = ConsoleColor.Cyan;
+    style.HeaderCellStyle = new CellStyle()
+    {
+        BackgroundColor = ConsoleColor.Cyan,
+        ForegroundColor = ConsoleColor.DarkBlue,
+        TextAlignment = TextAlignments.Center
+    };
 });
+```
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot3.PNG?raw=true)
 
+Or
+
+```csharp
+people.PrintAsTable(new TableStyle()
+{
+    BorderStyle = BorderStyles.SingleToDoubleLine,
+    UseRowSeperator = true,
+    RowSeperatorStyle = BorderStyles.SingleLine,
+    BorderColor = ConsoleColor.Red,
+    HorizontalPadding = 5,
+    VerticalPadding = 1,
+           
+});
+```
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot4.PNG?raw=true)
 
 ---
 
 ## Attributes for column customization
 
-Use `[TablePrintCol]` attribute on your model properties to control how columns display:
+Use `[TablePrintCol]` attribute on your model properties to control how columns display. These will override other styling defined on the table that affect the property.
 
-
-public class Person
+```csharp
+class Person
 {
-    [TablePrintCol(DisplayName = "Full Name", HeaderTextColor = ConsoleColor.Yellow)]
-    public string Name { get; set; }
+    public int Id { get; set; }
+    [TablePrintCol(DisplayName = "Full Name")]
+    public string? Name { get; set; }
 
-    [TablePrintCol(Format = "N0", CellTextAlignment = TextAlignment.Right)]
-    public int Age { get; set; }
+    [TablePrintCol(Format = "C", CellTextAlignment = TextAlignments.Right, HeaderTextColor = ConsoleColor.Yellow, CellBgColor = ConsoleColor.DarkGray)]    
+    public double Salary { get; set; }
 
     [TablePrintCol(Hidden = true)]
-    public string SecretCode { get; set; }
+    public string? SecretCode { get; set; }
+    
+    public string? Email { get; set; }
+
+    [TablePrintCol(DisplayName ="Date of Birth",Format = "MMM dd, yyyy",CellTextColor =ConsoleColor.Magenta)]
+    public DateOnly? DoB { get; set; }
+    public string? City { get; set; }
 }
+```
 
+When printing a list of `Person`:
 
-- `DisplayName`: Custom column header text  
-- `Format`: String format for the value  
-- `Hidden`: Hide this property in the table  
-- `HeaderTextColor`, `CellTextAlignment`, etc. for styling  
+```csharp
+people.PrintAsTable(new TableStyle()
+        {
+            BorderStyle = BorderStyles.SingleToDoubleLine,
+            UseRowSeperator = true,
+            RowSeperatorStyle = BorderStyles.SingleLine,
+            BorderColor = ConsoleColor.Red,
+            HorizontalPadding = 5,
+            VerticalPadding = 1,
+            HeaderCellStyle = new CellStyle()
+            {
+                BackgroundColor = ConsoleColor.Yellow,
+                ForegroundColor = ConsoleColor.Black,
+            }
+        });
+```
+
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot5.PNG?raw=true)
+
+When printing a single object of `Person`, it maintains the styling but uses it in the pivotted table:
+
+```csharp
+ConsoleTablePrinter.DefaultStyle = new TableStyle()
+{
+    BorderStyle = BorderStyles.SingleToDoubleLine,
+    UseRowSeperator = true,
+    RowSeperatorStyle = BorderStyles.SingleLine,
+    BorderColor = ConsoleColor.Red,
+    HorizontalPadding = 5,
+    VerticalPadding = 1,
+    HeaderCellStyle = new CellStyle()
+    {
+        BackgroundColor = ConsoleColor.Yellow,
+        ForegroundColor = ConsoleColor.Black,
+    }
+};
+var person = new Person() { Id = 1, Name = "Alice Johnson", Email = "Alice@eample.com", DoB = new DateOnly(1962, 4, 13), City = "Seattle" };
+people.PrintAsTable();
+person.PrintAsTable();
+```
+
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot6.PNG?raw=true)
+
+### Supported attributes:
+
+The following attributes can be used on the model properties
+| Attribute | Description |
+|-----------|-------------|
+| `DisplayName` | The header text to display for the column. If not specified, the property name will be used as the header. |
+| `Format` | The format string used to format the column's values. This supports standard .NET format strings, e.g. "C2" for currency with two decimals. |
+| `Hidden` | Indicate whether this column should be hidden from the output. |
+| `HeaderBgColor` | The background color of the column header. |
+| `HeaderTextColor` | The text color of the column header. |
+| `HeaderTextAlignment` | The text alignment of the column header. |
+| `CellBgColor` | The background color of the cell content in this column. |
+| `CellTextColor` | The text color of the cell content in this column. |
+| `CellTextAlignment` | The text alignment of the cell content in this column. |
 
 ---
 
-## TableStyle defaults
+## TableStyle default
 
 You can set a default style globally:
 
-
-ConsoleTablePrinter.DefaultStyle = new TableStyle
+```csharp
+ConsoleTablePrinter.DefaultStyle = new TableStyle()
 {
     BorderStyle = BorderStyles.SingleBoldLine,
     CellHorizontalPadding = 1,
     BackgroundColor = ConsoleColor.Black,
     BorderColor = ConsoleColor.Green,
 };
-
+```
 
 If no style is specified in `PrintAsTable()`, this default will be used.
 
----
-
-## Supported Border Styles
-
-- `SingleLine`  
-- `SingleBoldLine`  
-- `DoubleLine`  
-- `DoubleToSingleLine`  
-- `SingleToDoubleLine`  
-- `SingleDashedLine`  
-- `SingleDashedBoldLine`  
-- `SingleCurvedLine`  
-- `GoodOldAscii`  
-- `ImprovedAscii`  
+![screenshot](https://github.com/SamFarah/ConsoleTables/blob/master/Screenshots/screenshot7.PNG?raw=true)
 
 ---
 
+
+## Version History
+
+| Version       | Last updated  |
+| ------------- |---------------|
+| 1.0.0 	    |2025-06-02     |
+
+
+---
 ## License
 
-MIT License � Sam Farah
+MIT License © Sam Farah
 
 ---
 

@@ -4,15 +4,18 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>1.0.0</Version>
+		<Version>1.0.0</Version>		
 		<Authors>Sam Farah</Authors>
 		<PackageId>ConsoleTablePrinter</PackageId>
-		<Description>Lightweight console table printer with styling and attribute support</Description>
-		<PackageTags>console table printer formatting attributes</PackageTags>
+		<Description>Lightweight, easy to use, highly customizable console table printer with styling and attribute support</Description>
+		<PackageTags>console, table, formatting, attributes, styling, lightweight</PackageTags>
 		<RepositoryUrl>https://github.com/SamFarah/ConsoleTablePrint</RepositoryUrl>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeSymbols>true</IncludeSymbols>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/SamFarah/ConsoleTablePrint</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>		
 	</PropertyGroup>
 
 	<ItemGroup>
