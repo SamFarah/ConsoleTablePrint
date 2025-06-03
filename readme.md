@@ -21,14 +21,14 @@ Easily print objects and collections as styled console tables with minimal setup
 Install via NuGet:
 
 ```bash
-dotnet add package ConsoleTablePrinter --version 1.0.1
+dotnet add package ConsoleTablePrinter --version 1.0.2
 ```
 
 
 Or using the NuGet Package Manager:
 
 ```
-Install-Package ConsoleTablePrinter -Version 1.0.1
+Install-Package ConsoleTablePrinter -Version 1.0.2
 ```
 
 ---
@@ -152,7 +152,7 @@ Both `HeaderCellStyle` and `DataCellStyle` are of type `CellStyle`
 
 ---
 
-### 💡 Example Usage
+### Example Usage
 
 Styles can be applied either inline via a lambda or by passing a pre-configured `TableStyle` object to `PrintAsTable()`.
 
@@ -264,6 +264,7 @@ person.PrintAsTable();
 ### Supported attributes:
 
 The following attributes can be used on the model properties
+
 | Attribute | Description |
 |-----------|-------------|
 | `DisplayName` | The header text to display for the column. If not specified, the property name will be used as the header. |
@@ -303,8 +304,9 @@ If no style is specified in `PrintAsTable()`, this default will be used.
 
 | Version       | Last updated  |
 | ------------- |---------------|
-| 1.0.0 	    |2025-06-02     |
-| 1.0.1 	    |2025-06-03     |
+| 1.0.0 | 2025-06-02 |
+| 1.0.1 | 2025-06-03 |
+| 1.0.2 | 2025-06-03 |
 
 ---
 ## License
