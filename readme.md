@@ -1,15 +1,14 @@
 ﻿
 # ConsoleTablesPrinter
-
-A simple, flexible, and customizable console table printer for .NET applications.  
-Easily print objects and collections as styled tables with minimal setup.
+A simple, flexible, and customizable table printer for .NET console applications.  
+Easily print objects and collections as styled console tables with minimal setup.
 
 ---
 
 ## Features
 
 - Print single objects or lists as formatted console tables  
-- Customizable table styles, borders, colors, paddings, and animations  
+- Customizable table styles, borders, colors, padding, and "animations"
 - Support for property-level formatting and visibility using attributes  
 - Multiple built-in border styles with UTF-8 or ASCII fallback  
 - Supports cell text alignment and custom foreground/background colors  
@@ -74,7 +73,8 @@ person.PrintAsTable();
 
 ![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot2.1.png)
 
-Notice that when it is a single object it will pivot the table and display a 2 column name/value table
+When printing a single object, the table pivots into a 2-column layout showing property names and values.
+
 
 ## Customize Table Style
 
@@ -154,7 +154,7 @@ Both `HeaderCellStyle` and `DataCellStyle` are of type `CellStyle`
 
 ### 💡 Example Usage
 
-You can apply these styles either by configuring a new TableStyle inline using a lambda expression or by passing a pre configured TableStyle object to PrintAsTable 
+Styles can be applied either inline via a lambda or by passing a pre-configured `TableStyle` object to `PrintAsTable()`.
 
 ```csharp
 people.PrintAsTable(style =>
@@ -237,7 +237,7 @@ people.PrintAsTable(new TableStyle()
 
 ![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot5.png)
 
-When printing a single object of `Person`, it maintains the styling but uses it in the pivoted table:
+When printing a single `Person` object, styling is preserved and applied to the pivoted layout:
 
 ```csharp
 ConsoleTablePrinter.DefaultStyle = new TableStyle()
