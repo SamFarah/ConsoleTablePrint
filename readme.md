@@ -54,9 +54,9 @@ class Program
     {
         var people = new List<Person>
         {
-            new() { Id=1, Name = "Alice Johnson", Email="Alice@eample.com", DoB = new DateOnly(1962,4,13), City = "Seattle" },
-            new() { Id=2, Name = "Bob Smith", Email="bob@eample.com", DoB =  new DateOnly(1991,7,27), City = "Portland" },
-            new() { Id=3, Name = "Charlie Potato", Email="charlie.potato @eample.com", DoB=  new DateOnly(1962,4,13), City = "San Francisco" }
+            new() { Id=1, Name = "Alice Johnson", Email="Alice@example.com", DoB = new DateOnly(1962,4,13), City = "Seattle" },
+            new() { Id=2, Name = "Bob Smith", Email="bob@example.com", DoB =  new DateOnly(1991,7,27), City = "Portland" },
+            new() { Id=3, Name = "Charlie Potato", Email="charlie.potato@example.com", DoB=  new DateOnly(1962,4,13), City = "San Francisco" }
         };
         people.PrintAsTable();
     }
@@ -121,8 +121,8 @@ Both `HeaderCellStyle` and `DataCellStyle` are of type `CellStyle`
 
 | Property | Description |
 |----------|-------------|
-| `UseRowSeperator` | If set to `true` it will add a line between each row for better readability. |
-| `RowSeperatorStyle` | (Optional) Use a different border style for row separators. Style of the row separators. Falls back to `BorderStyle` if not set. Only applies if `UseRowSeperator` is `true`. |
+| `UseRowSeparator` | If set to `true` it will add a line between each row for better readability. |
+| `RowSeparatorStyle` | (Optional) Use a different border style for row separators. Style of the row separators. Falls back to `BorderStyle` if not set. Only applies if `UseRowSeparator` is `true`. |
 
 ---
 
@@ -179,8 +179,8 @@ Or
 people.PrintAsTable(new TableStyle()
 {
     BorderStyle = BorderStyles.SingleToDoubleLine,
-    UseRowSeperator = true,
-    RowSeperatorStyle = BorderStyles.SingleLine,
+    UseRowSeparator = true,
+    RowSeparatorStyle = BorderStyles.SingleLine,
     BorderColor = ConsoleColor.Red,
     HorizontalPadding = 5,
     VerticalPadding = 1,
@@ -222,8 +222,8 @@ When printing a list of `Person`:
 people.PrintAsTable(new TableStyle()
         {
             BorderStyle = BorderStyles.SingleToDoubleLine,
-            UseRowSeperator = true,
-            RowSeperatorStyle = BorderStyles.SingleLine,
+            UseRowSeparator = true,
+            RowSeparatorStyle = BorderStyles.SingleLine,
             BorderColor = ConsoleColor.Red,
             HorizontalPadding = 5,
             VerticalPadding = 1,
@@ -237,14 +237,14 @@ people.PrintAsTable(new TableStyle()
 
 ![screenshot](https://raw.githubusercontent.com/SamFarah/ConsoleTablesPrinter/refs/heads/main/Screenshots/screenshot5.png)
 
-When printing a single object of `Person`, it maintains the styling but uses it in the pivotted table:
+When printing a single object of `Person`, it maintains the styling but uses it in the pivoted table:
 
 ```csharp
 ConsoleTablePrinter.DefaultStyle = new TableStyle()
 {
     BorderStyle = BorderStyles.SingleToDoubleLine,
-    UseRowSeperator = true,
-    RowSeperatorStyle = BorderStyles.SingleLine,
+    UseRowSeparator = true,
+    RowSeparatorStyle = BorderStyles.SingleLine,
     BorderColor = ConsoleColor.Red,
     HorizontalPadding = 5,
     VerticalPadding = 1,

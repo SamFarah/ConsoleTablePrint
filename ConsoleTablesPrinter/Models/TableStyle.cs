@@ -55,16 +55,16 @@ public class TableStyle
     /// <summary>
     /// If <c>true</c>, inserts a visual row separator between each table row.
     /// </summary>
-    public bool UseRowSeperator { get; set; }
+    public bool UseRowSeparator { get; set; }
 
     /// <summary>
-    /// Specifies the border style to use for row separators. Only used if <see cref="UseRowSeperator"/> is <c>true</c>.
+    /// Specifies the border style to use for row separators. Only used if <see cref="UseRowSeparator"/> is <c>true</c>.
     /// If not set, the value from <see cref="BorderStyle"/> will be used.
     /// <example>
-    /// For example: It looks better to use <see cref="BorderStyles.SingleLine"/> for the row seperator when the table border style is <see cref="BorderStyles.SingleToDoubleLine"/>
+    /// For example: It looks better to use <see cref="BorderStyles.SingleLine"/> for the row separator when the table border style is <see cref="BorderStyles.SingleToDoubleLine"/>
     /// </example>
     /// </summary>
-    public BorderStyles? RowSeperatorStyle { get; set; }
+    public BorderStyles? RowSeparatorStyle { get; set; }
 
 
     /// <summary>

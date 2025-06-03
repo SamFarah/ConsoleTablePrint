@@ -18,7 +18,7 @@ public static partial class ConsoleTablePrinter
     {
         TopLine,
         UnderHeaderLine,
-        RowSeperator,
+        RowSeparator,
         BottomLine
     }
 
@@ -56,7 +56,7 @@ public static partial class ConsoleTablePrinter
     {
             { HorLineDefs.TopLine, new PiecePos[]{PiecePos.TopLeft, PiecePos.Horizontal, PiecePos.TopT, PiecePos.TopRight } },
             { HorLineDefs.UnderHeaderLine, new PiecePos[]{PiecePos.LeftT, PiecePos.Horizontal, PiecePos.Cross, PiecePos.RightT }},
-            { HorLineDefs.RowSeperator,new PiecePos[]{PiecePos.LeftT, PiecePos.Horizontal, PiecePos.Cross, PiecePos.RightT }},
+            { HorLineDefs.RowSeparator,new PiecePos[]{PiecePos.LeftT, PiecePos.Horizontal, PiecePos.Cross, PiecePos.RightT }},
             { HorLineDefs.BottomLine,new PiecePos[]{PiecePos.BottomLeft, PiecePos.Horizontal, PiecePos.BottomT, PiecePos.BottomRight }}
     };
 

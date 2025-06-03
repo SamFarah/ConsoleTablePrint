@@ -36,7 +36,7 @@ public static partial class ConsoleTablePrinter
         ).ToList();
 
         var requiresUtf8 = tableStyle != null && (_specialEncodingStyles.Contains(tableStyle.BorderStyle.GetValueOrDefault()) ||
-                                                  _specialEncodingStyles.Contains(tableStyle.RowSeperatorStyle.GetValueOrDefault()));
+                                                  _specialEncodingStyles.Contains(tableStyle.RowSeparatorStyle.GetValueOrDefault()));
 
         ConsoleStateManager.WithConsoleState(() => PrintTable(headers, rows, tableStyle), requiresUtf8);
     }
@@ -66,7 +66,7 @@ public static partial class ConsoleTablePrinter
         }).ToList();
 
         var requiresUtf8 = tableStyle != null && (_specialEncodingStyles.Contains(tableStyle.BorderStyle.GetValueOrDefault()) ||
-                                                  _specialEncodingStyles.Contains(tableStyle.RowSeperatorStyle.GetValueOrDefault()));
+                                                  _specialEncodingStyles.Contains(tableStyle.RowSeparatorStyle.GetValueOrDefault()));
 
         ConsoleStateManager.WithConsoleState(() => PrintTable(headers, rows, tableStyle), requiresUtf8);
     }
@@ -131,12 +131,12 @@ public static partial class ConsoleTablePrinter
             }
             PrintBorder(borderStyle, PiecePos.Vertical, borderColor, borderBgColor, appendNewline: true);
 
-            if (i < rowCount - 1 && (tableStyle?.UseRowSeperator ?? false))
+            if (i < rowCount - 1 && (tableStyle?.UseRowSeparator ?? false))
             {
-                var rowSeperatorStyle = tableStyle?.RowSeperatorStyle ?? borderStyle;
+                var rowSeparatorStyle = tableStyle?.RowSeparatorStyle ?? borderStyle;
 
-                // print row seperator 
-                PrintHorizentalLine(hLineTemplate, rowSeperatorStyle, HorLineDefs.RowSeperator, borderColor, borderBgColor);
+                // print row separator 
+                PrintHorizentalLine(hLineTemplate, rowSeparatorStyle, HorLineDefs.RowSeparator, borderColor, borderBgColor);
             }
         }
 
