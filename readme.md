@@ -45,7 +45,8 @@ class Person
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Email { get; set; }
-    public DateOnly? DoB { get; set; }    
+    public DateOnly? DoB { get; set; }  
+    public string? City { get; set; } 
 }
 class Program
 {
