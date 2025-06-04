@@ -1,38 +1,42 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
-namespace ConsoleTablesPrinter.Helpers;
-internal static class ConsoleStateManager
+namespace ConsoleTablesPrinter.Helpers
 {
-    internal static void WithConsoleState(Action action, bool requiresUtf8)
+    internal static class ConsoleStateManager
     {
-        var originalEncoding = Console.OutputEncoding;
-        var originalBg = Console.BackgroundColor;
-        var originalFg = Console.ForegroundColor;
-        var originalCursor = true;
-
-        try
+        internal static void WithConsoleState(Action action, bool requiresUtf8)
         {
-            if (requiresUtf8)
-                Console.OutputEncoding = Encoding.UTF8;
+            var originalEncoding = Console.OutputEncoding;
+            var originalBg = Console.BackgroundColor;
+            var originalFg = Console.ForegroundColor;
+            var originalCursor = true;
 
-            if (OperatingSystem.IsWindows())
+            try
+            {
+                if (requiresUtf8)
+                    Console.OutputEncoding = Encoding.UTF8;
+
+                //if (OperatingSystem.IsWindows())
                 originalCursor = Console.CursorVisible;
 
-            Console.CursorVisible = false;
+                Console.CursorVisible = false;
 
-            action();
-        }
-        catch (Exception ex)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Error.WriteLine(ex);
-        }
-        finally
-        {
-            Console.OutputEncoding = originalEncoding;
-            Console.BackgroundColor = originalBg;
-            Console.ForegroundColor = originalFg;
-            if (OperatingSystem.IsWindows()) Console.CursorVisible = originalCursor;
+                action();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Error.WriteLine(ex);
+            }
+            finally
+            {
+                Console.OutputEncoding = originalEncoding;
+                Console.BackgroundColor = originalBg;
+                Console.ForegroundColor = originalFg;
+                Console.CursorVisible = originalCursor;
+                //if (OperatingSystem.IsWindows())
+            }
         }
     }
 }

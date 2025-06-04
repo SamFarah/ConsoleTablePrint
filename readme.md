@@ -21,14 +21,14 @@ Easily print objects and collections as styled console tables with minimal setup
 Install via NuGet:
 
 ```bash
-dotnet add package ConsoleTablePrinter --version 1.0.3
+dotnet add package ConsoleTablePrinter --version 1.0.4
 ```
 
 
 Or using the NuGet Package Manager:
 
 ```
-Install-Package ConsoleTablePrinter -Version 1.0.3
+Install-Package ConsoleTablePrinter -Version 1.0.4
 ```
 
 ---
@@ -203,7 +203,7 @@ class Person
     [TablePrintCol(DisplayName = "Full Name")]
     public string? Name { get; set; }
 
-    [TablePrintCol(Format = "C", CellTextAlignment = TextAlignments.Right, HeaderTextColor = ConsoleColor.Yellow, CellBgColor = ConsoleColor.DarkGray)]    
+    [TablePrintCol(Format = "C", CellTextAlignment = TextAlignments.Right, HeaderTextColor = ConsoleColor.Red, CellBgColor = ConsoleColor.DarkGray)]    
     public double Salary { get; set; }
 
     [TablePrintCol(Hidden = true)]
@@ -309,6 +309,7 @@ If no style is specified in `PrintAsTable()`, this default will be used.
 | 1.0.1 | 2025-06-03 |
 | 1.0.2 | 2025-06-03 |
 | 1.0.3 | 2025-06-03 |
+| 1.0.4 | 2025-06-03 |
 
 ---
 ## License

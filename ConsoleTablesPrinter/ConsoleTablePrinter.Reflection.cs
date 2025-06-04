@@ -1,39 +1,44 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
-namespace ConsoleTablesPrinter;
-public static partial class ConsoleTablePrinter
+namespace ConsoleTablesPrinter
 {
-    private static List<PropertyInfo> GetVisibleProperties<T>() =>
-      typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
-           .Where(p => p.GetCustomAttribute<TablePrintColAttribute>()?.Hidden != true)
-           .ToList();
-
-    private static string FormatValue(object? val, TablePrintColAttribute? attr)
+    public static partial class ConsoleTablePrinter
     {
-        if (val == null) return "";
-        if (!string.IsNullOrEmpty(attr?.Format) && val is IFormattable fmt) return fmt.ToString(attr.Format, null);
-        return val.ToString() ?? "";
-    }
+        private static List<PropertyInfo> GetVisibleProperties<T>() =>
+          typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+               .Where(p => p.GetCustomAttribute<TablePrintColAttribute>()?.Hidden != true)
+               .ToList();
 
-    private static CellStyle GetHeaderStyle(TablePrintColAttribute? attr) => new()
-    {
-        BackgroundColor = (int?)attr?.HeaderBgColor != -1 ? attr?.HeaderBgColor : null,
-        ForegroundColor = (int?)attr?.HeaderTextColor != -1 ? attr?.HeaderTextColor : null,
-        TextAlignment = (int?)attr?.HeaderTextAlignment != -1 ? attr?.HeaderTextAlignment : null
-    };
-
-
-    private static CellStyle GetCellStyle(TablePrintColAttribute? attr)
-    {
-        var style = new CellStyle();
-        if (attr != null)
+        private static string FormatValue(object? val, TablePrintColAttribute? attr)
         {
-            if ((int)attr.CellBgColor != -1) style.BackgroundColor = attr.CellBgColor;
-            if ((int)attr.CellTextColor != -1) style.ForegroundColor = attr.CellTextColor;
-            if ((int)attr.CellTextAlignment != -1) style.TextAlignment = attr.CellTextAlignment;
+            if (val == null) return "";
+            if (!string.IsNullOrEmpty(attr?.Format) && val is IFormattable fmt) return fmt.ToString(attr.Format, null);
+            return val.ToString() ?? "";
         }
-        return style;
+
+        private static CellStyle GetHeaderStyle(TablePrintColAttribute? attr) => new CellStyle()
+        {
+            BackgroundColor = (int?)attr?.HeaderBgColor != -1 ? attr?.HeaderBgColor : null,
+            ForegroundColor = (int?)attr?.HeaderTextColor != -1 ? attr?.HeaderTextColor : null,
+            TextAlignment = (int?)attr?.HeaderTextAlignment != -1 ? attr?.HeaderTextAlignment : null
+        };
+
+
+        private static CellStyle GetCellStyle(TablePrintColAttribute? attr)
+        {
+            var style = new CellStyle();
+            if (attr != null)
+            {
+                if ((int)attr.CellBgColor != -1) style.BackgroundColor = attr.CellBgColor;
+                if ((int)attr.CellTextColor != -1) style.ForegroundColor = attr.CellTextColor;
+                if ((int)attr.CellTextAlignment != -1) style.TextAlignment = attr.CellTextAlignment;
+            }
+            return style;
+        }
+
+
     }
-
-
 }
