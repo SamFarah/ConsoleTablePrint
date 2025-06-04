@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>ConsoleTablesPrinter</PackageId>
-		<Version>1.0.5</Version>
+		<Version>1.0.7</Version>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<Nullable>enable</Nullable>
 		<Authors>Sam Farah</Authors>
@@ -12,18 +12,24 @@
 		<PackageProjectUrl>https://github.com/SamFarah/ConsoleTablesPrinter</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<IncludeSymbols>true</IncludeSymbols>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>		
 		<IncludeSource>true</IncludeSource>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-		<DebugType>portable</DebugType>
+		<DebugType>embedded</DebugType>
 		<Optimize>true</Optimize>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<EnableSourceControlManagerQueries>true</EnableSourceControlManagerQueries>		
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="../readme.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
+	<ItemGroup>		
+		<Compile Remove="$(BaseIntermediateOutputPath)**\*.cs" />
+		<None Remove="$(BaseIntermediateOutputPath)**\*" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
