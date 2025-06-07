@@ -31,18 +31,27 @@ namespace ConsoleTablesPrinter
         /// The background color of the column header.
         /// Set to <c>(ConsoleColor)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor HeaderBgColor { get; set; } = (ConsoleColor)(-1);
 
         /// <summary>
         /// The text color of the column header.
         /// Set to <c>(ConsoleColor)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor HeaderTextColor { get; set; } = (ConsoleColor)(-1);
 
         /// <summary>
         /// The text alignment of the column header.
         /// Set to <c>(TextAlignment)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public TextAlignments HeaderTextAlignment { get; set; } = (TextAlignments)(-1);
 
 
@@ -50,18 +59,27 @@ namespace ConsoleTablesPrinter
         /// The background color of the cell content in this column.
         /// Set to <c>(ConsoleColor)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor CellBgColor { get; set; } = (ConsoleColor)(-1);
 
         /// <summary>
         /// The text color of the cell content in this column.
         /// Set to <c>(ConsoleColor)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor CellTextColor { get; set; } = (ConsoleColor)(-1);
 
         /// <summary>
         /// The text alignment of the cell content in this column.
         /// Set to <c>(TextAlignment)(-1)</c> to use the default.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public TextAlignments CellTextAlignment { get; set; } = (TextAlignments)(-1);
 
 

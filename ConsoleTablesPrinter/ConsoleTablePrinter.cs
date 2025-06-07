@@ -22,6 +22,40 @@ namespace ConsoleTablesPrinter
         /// </summary>
         public static TableStyle? DefaultStyle { get; set; }
 
+
+
+        /// <summary>
+        /// The ANSI escape sequence that represents the console's default background color.
+        /// 
+        /// This is only required if your application uses ANSI escape codes for color output
+        /// (e.g., 256-color or 24-bit RGB modes). It allows the table printer to restore the original
+        /// background color after rendering.
+        ///        
+        /// Example formats:
+        /// - 256-color: "\u001b[48;5;234m"
+        /// - RGB (true color): "\u001b[48;2;30;30;30m"
+        /// </summary>
+        /// <remarks>
+        /// Do not set this if you're using standard <see cref="Console.BackgroundColor"/>. 
+        /// </remarks>
+        public static string? ConsoleAnsiBg { get; set; }
+
+        /// <summary>
+        /// The ANSI escape sequence that represents the console's default foreground color.
+        /// 
+        /// This is only required if your application uses ANSI escape codes for color output
+        /// (e.g., 256-color or 24-bit RGB modes). It allows the table printer to restore the original
+        /// foreground color after rendering.
+        ///
+        /// Example formats:
+        /// - 256-color: "\u001b[38;5;250m"
+        /// - RGB (true color): "\u001b[38;2;200;200;200m"
+        /// </summary>
+        /// <remarks>
+        /// Do not set this if you're using standard <see cref="Console.ForegroundColor"/>.
+        /// </remarks>
+        public static string? ConsoleAnsiFg { get; set; }
+
         /// <summary>
         /// Prints the given object as a formatted table to the console,
         /// applying the specified table configuration.

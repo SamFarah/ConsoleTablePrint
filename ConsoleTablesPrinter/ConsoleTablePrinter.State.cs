@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ConsoleTablesPrinter
 {
@@ -16,6 +17,45 @@ namespace ConsoleTablesPrinter
         {
             public string? Value { get; set; }
             public CellStyle CellStyle { get; set; } = new CellStyle();
+        }
+
+        private static class ConsoleStateManager
+        {
+            internal static void WithConsoleState(Action action, bool requiresUtf8, string? consoleAnsiBg, string? consoleAnsiFg)
+            {
+                var originalEncoding = Console.OutputEncoding;
+                var originalBg = !string.IsNullOrEmpty(consoleAnsiBg) ? consoleAnsiBg : _backgrounds[Console.BackgroundColor];
+                var originalFg = !string.IsNullOrEmpty(consoleAnsiFg) ? consoleAnsiFg : _foregrounds[ Console.ForegroundColor];
+                var originalCursor = true;
+                _styleResetter =  $"{originalFg}{originalBg}" ;
+                try
+                {
+                    if (requiresUtf8)
+                        Console.OutputEncoding = Encoding.UTF8;
+
+                    //if (OperatingSystem.IsWindows())
+                    originalCursor = Console.CursorVisible;
+
+                    Console.CursorVisible = false;
+
+                    action();
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine(ex);
+                }
+                finally
+                {
+                    Console.OutputEncoding = originalEncoding;
+                    Console.Out.Write(originalBg);
+                    Console.Out.Write(originalFg);
+                    //Console.BackgroundColor = originalBg;
+                    //Console.ForegroundColor = originalFg;
+                    Console.CursorVisible = originalCursor;
+                    //if (OperatingSystem.IsWindows())
+                }
+            }
         }
 
         private enum HorLineDefs
@@ -42,19 +82,21 @@ namespace ConsoleTablesPrinter
         }
 
 
-        private static readonly Dictionary<BorderStyles, char[]> _borderLlines = new Dictionary<BorderStyles, char[]>()
+        private static readonly Dictionary<BorderStyles, string> _borderLlines = new Dictionary<BorderStyles, string>()
         {
-            { BorderStyles.SingleLine ,            new char[]{'┌', '┐', '└', '┘', '─', '│', '┬', '┴', '┤', '├', '┼',}},
-            { BorderStyles.SingleBoldLine ,        new char[]{'┏', '┓', '┗', '┛', '━', '┃', '┳', '┻', '┫', '┣', '╋',}},
-            { BorderStyles.DoubleLine ,            new char[]{'╔', '╗', '╚', '╝', '═', '║', '╦', '╩', '╣', '╠', '╬',}},
-            { BorderStyles.DoubleToSingleLine ,    new char[]{'╓', '╖', '╙', '╜', '─', '║', '╥', '╨', '╢', '╟', '╫',}},
-            { BorderStyles.SingleToDoubleLine ,    new char[]{'╒', '╕', '╘', '╛', '═', '│', '╤', '╧', '╡', '╞', '╪',}},
-            { BorderStyles.SingleDashedLine ,      new char[]{'┌', '┐', '└', '┘', '╌', '╎', '┬', '┴', '┤', '├', '┼',}},
-            { BorderStyles.SingleDashedBoldLine ,  new char[]{'┏', '┓', '┗', '┛', '╍', '╏', '┳', '┻', '┫', '┣', '╋',}},
-            { BorderStyles.SingleCurvedLine ,      new char[]{'╭', '╮', '╰', '╯', '─', '│', '┬', '┴', '┤', '├', '┼',}},
-            { BorderStyles.GoodOldAscii ,          new char[]{'-', '-', '-', '-', '-', '│', '-', '-', '-', '-', '-',}},
-            { BorderStyles.ImprovedAscii ,         new char[]{'+', '+', '+', '+', '-', '│', '+', '+', '+', '+', '+',}},
+            { BorderStyles.SingleLine,            "┌┐└┘─│┬┴┤├┼"},
+            { BorderStyles.SingleBoldLine,        "┏┓┗┛━┃┳┻┫┣╋"},
+            { BorderStyles.DoubleLine,            "╔╗╚╝═║╦╩╣╠╬"},
+            { BorderStyles.DoubleToSingleLine,    "╓╖╙╜─║╥╨╢╟╫"},
+            { BorderStyles.SingleToDoubleLine,    "╒╕╘╛═│╤╧╡╞╪"},
+            { BorderStyles.SingleDashedLine,      "┌┐└┘╌╎┬┴┤├┼"},
+            { BorderStyles.SingleDashedBoldLine,  "┏┓┗┛╍╏┳┻┫┣╋"},
+            { BorderStyles.SingleCurvedLine,      "╭╮╰╯─│┬┴┤├┼"},
+            { BorderStyles.GoodOldAscii,          "-----|-----"},
+            { BorderStyles.ImprovedAscii,         "++++-|+++++"}            
         };
+
+        private static readonly string _markdownLines = "    -|  |||"; // only used when print mode is markdown 
 
         private static readonly Dictionary<HorLineDefs, PiecePos[]> _lineDefinitions = new Dictionary<HorLineDefs, PiecePos[]>()
         {

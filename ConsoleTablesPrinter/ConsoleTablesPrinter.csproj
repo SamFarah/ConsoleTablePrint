@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>ConsoleTablesPrinter</PackageId>
-		<Version>1.1.0</Version>
+		<Version>1.1.2</Version>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<Nullable>enable</Nullable>
 		<Authors>Sam Farah</Authors>

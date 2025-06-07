@@ -61,14 +61,14 @@
 
         /// <summary>
         /// A simple ASCII border style using only basic characters.
-        /// Uses the characters: - │
+        /// Uses the characters: - |
         /// </summary>
         GoodOldAscii,
 
         /// <summary>
         /// An improved ASCII border style using plus, dash, and pipe characters.
-        /// Uses the characters: + - │
+        /// Uses the characters: + - |
         /// </summary>
-        ImprovedAscii
+        ImprovedAscii        
     }
 }

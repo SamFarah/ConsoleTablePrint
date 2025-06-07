@@ -14,6 +14,9 @@ namespace ConsoleTablesPrinter
         /// If <c>null</c>, the current console foreground color is used,
         /// unless overridden by an attribute on the property using <see cref="TablePrintColAttribute"/>.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor? ForegroundColor { get; set; }
 
         /// <summary>
@@ -21,6 +24,9 @@ namespace ConsoleTablesPrinter
         /// If <c>null</c>, the current console background color is used,
         /// unless overridden by an attribute on the property using <see cref="TablePrintColAttribute"/>.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public ConsoleColor? BackgroundColor { get; set; }
 
         /// <summary>
@@ -28,6 +34,9 @@ namespace ConsoleTablesPrinter
         /// If <c>null</c>, the default console text alignment is used,
         /// unless overridden by an attribute on the property using <see cref="TablePrintColAttribute"/>.
         /// </summary>
+        /// <remarks>
+        /// Ignored in Markdown mode.
+        /// </remarks>
         public TextAlignments? TextAlignment { get; set; }
     }
 }
