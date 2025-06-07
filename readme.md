@@ -21,14 +21,14 @@ Easily print objects and collections as styled console tables with minimal setup
 Install via NuGet:
 
 ```bash
-dotnet add package ConsoleTablePrinter --version 1.1.2
+dotnet add package ConsoleTablePrinter --version 1.1.3
 ```
 
 
 Or using the NuGet Package Manager:
 
 ```
-Install-Package ConsoleTablePrinter -Version 1.1.2
+Install-Package ConsoleTablePrinter -Version 1.1.3
 ```
 
 ---
@@ -103,7 +103,7 @@ var style = new TableStyle
 myList.PrintListAsTable(style);
 ```
 
-**Markup Mode**
+**Markdown Mode**
 ```csharp
 people.PrintAsTable(o => o.PrintMode = TablePrintModes.Markdown); // OR
 people.PrintAsTable(new TableStyle() { PrintMode = TablePrintModes.Markdown });
@@ -410,7 +410,7 @@ If you need more information about ANSI Escape Sequences, you can take a look at
 | 1.0.4 | 2025-06-03 | Read me updates |
 | 1.0.7 | 2025-06-03 | Proj Health Flags |
 | 1.1.0 | 2025-06-05 | Optimzation, Bug Fixes |
-| 1.1.2 | 2025-06-07 | Added PrintingModes, Support for ANSI console fg/bg colors. |
+| 1.1.3 | 2025-06-07 | Added PrintingModes, Support for ANSI console fg/bg colors. |
 
 ---
 ## License
